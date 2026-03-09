@@ -1,187 +1,91 @@
-# 🗣️ PLN com Machine Learning — Iniciação Científica
+# 📚 Iniciação Científica — Processamento de Linguagem Natural (PLN) com Machine Learning
 
-Repositório da IC em **Processamento de Linguagem Natural (PLN)** com foco em **classificação de textos em português** usando **modelos clássicos de Machine Learning** e representações de texto como **Bag of Words, TF‑IDF e Word Embeddings**.
+Repositório da Iniciação Científica focado em **Processamento de Linguagem Natural (PLN)** e **Inteligência Artificial**, com foco em **classificação de textos em português** usando modelos clássicos de Machine Learning e Contrastes Modernos (Transformers/Hugging Face).
 
-O código foi pensado para ser **didático**: teoria curta → exemplo prático → interpretação da saída.
+O material desenvolvido neste repositório foi planejado para ser **altamente didático**: teoria concisa → exemplo prático → interpretação visual da saída e extração de métricas de avaliação.
 
 ---
 
-## 🧭 Arquivos desta pasta
+## 🧭 Estrutura do Repositório
 
-```
+```text
 PLN/
-├── PLN_Machine_Learning.ipynb          ← Pipeline completo de PLN (10 partes)
-├── IA_Machine_Learning.ipynb           ← Fundamentos de IA e ML (9 partes)
-├── PLN_Machine.ipynb                   ← Versão anterior (referência)
-├── PLN_Machine_Learning_Completo.ipynb ← Versão estendida (referência)
-├── Sumario.md                          ← Sumário detalhado dos conteúdos
-└── README.md                          ← Este arquivo
+├── PLN_Machine_Learning.ipynb   ← Pipeline completo de Fundamentos e Pré-Proc de PLN
+├── IA_Machine_Learning.ipynb    ← Fundamentos de IA, Classificação Linear/Probabilística e Transformers
+└── NLTK_VADER/
+    └── sentiment.py             ← App Streamlit Interativo de análise de sentimento (VADER)
 ```
 
 ---
 
-## 📓 Notebooks Principais
+## 📓 Resumo dos Notebooks
 
-### `PLN_Machine_Learning.ipynb` — Pipeline de PLN
+### 1. `PLN_Machine_Learning.ipynb` — *O Pipeline Clássico de PLN*
 
-| Parte | Tópico | O que cobre |
-|-------|--------|-------------|
-| 1 | Introdução ao PLN | Definição, exemplos, desafios (ambiguidade, negação) |
-| 2 | Setup | Instalação de dependências e imports |
-| 3 | Tokenização | `word_tokenize`, `sent_tokenize`, normalização `.lower()` |
-| 4 | Stopwords | Remoção padrão, riscos com negações, lista customizada |
-| 5 | Bag of Words | `CountVectorizer` — matriz documento × palavra |
-| 6 | TF-IDF | `TfidfVectorizer` — pesos inteligentes por raridade |
-| 7 | BoW vs TF-IDF | Comparação lado a lado com o mesmo corpus |
-| 8 | Classificação | Naive Bayes e Logistic Regression em reviews |
-| 9 | Word Embeddings | Word2Vec com Gensim — similaridade semântica |
-| 10 | Conclusão | Checklist, próximos passos e recursos |
-
-### `IA_Machine_Learning.ipynb` — Fundamentos de IA
+Cobre o fluxo de ponta a ponta focado em Processamento Numérico e Limpeza do Texto:
 
 | Parte | Tópico | O que cobre |
 |-------|--------|-------------|
-| 1 | O que é IA | Definição, história (Turing → ChatGPT), tipos de IA |
-| 2 | Abordagens | IA Simbólica vs Conectivista |
-| 3 | Machine Learning | Supervisionado, não-supervisionado, reforço |
-| 4 | Fundamentos Matemáticos | Vetores, matrizes, sigmoid, ReLU |
-| 5 | Importância dos Dados | Overfitting, underfitting, regularização |
-| 6 | Naive Bayes | Teorema de Bayes aplicado a texto (com código) |
-| 7 | Logistic Regression e Prática | Sigmoid, gradient descent e Exemplo Prático de Spam vs Ham (Métricas: Precisão, Recall, F1) |
-| 8 | Modelos de Ponta | Contraste de ML Clássico vs Transformers (Hugging Face via `pipeline`) |
-| 9 | Limitações e Ética | Viés de dados, caixa preta, privacidade |
-| 10 | Glossário e Recursos | Termos-chave e referências |
+| **1-2** | **Introdução e Setup** | O que é PLN, desafios da ambiguidade linguística, instalações com `nltk` e `spacy`. |
+| **3** | **Tokenização** | Limpeza básica dividindo sentenças ou palavras, conversão usando `.lower()`. |
+| **4** | **Stopwords** | Remoção de conectivos descartáveis vs. Construção de listas de remoção seguras (`não` perder negações). |
+| **5-7** | **Bag of Words & TF-IDF** | Contagem de Ocorrências Absolutas (`CountVectorizer`) vs Frequência e Raridade Ponderada (`TfidfVectorizer`). |
+| **8** | **Classificação de Sentimento** | Implementação de Multinomial Naive Bayes e Logistic Regression p/ detectar sentimentos positivos/negativos. |
+| **9** | **Word Embeddings** | Visão conceitual usando `Word2Vec` (Gensim) para captar conexões e proximidade semântica (gatilho: Cachorro = Gato). |
+
+### 2. `IA_Machine_Learning.ipynb` — *Modelos e Avaliações*
+
+Cobre Inteligência Artificial aplicada, focado em Algoritmos (Clássicos vs Modernos) e Interpretação:
+
+| Parte | Tópico | O que cobre |
+|-------|--------|-------------|
+| **1-3** | **Fundamentação de IA** | Abordagens de Machine Learning (Supervisionado, não-supervisionado) vs IA Simbólica. |
+| **4-5** | **Ciência de Dados** | Matrizes e vetores no contexto de código, Overfitting, Underfitting e importância dos dados. |
+| **6** | **Naive Bayes (Teórica)** | Intuição básica por trás do cálculo de Teorema de Bayes em eventos de texto probabilísticos. |
+| **7** | **Modelos Práticos & Métricas** | Exemplo passo-a-passo e comentado explicitando a divisão entre Spam e Ham, incluindo relatórios reais de classificação e interpretação: **Precisão vs Recall vs F1-Score**. |
+| **8** | **Modelos Clássicos vs Hugging Face** | O contraste de trabalhar codificando *Features Manuais* versus abstrair redes neurais e State of the Art via `pipelines("sentiment-analysis")` do pacote Transformer. |
+| **9-10** | **Limitações e Referências** | Ética no ML, modelos de caixa preta, privacidade e referências literárias. |
 
 ---
 
-## 📚 O que você vai encontrar aqui
+## 🧪 Tecnologias Usadas
 
-O conteúdo segue o pipeline completo de PLN:
-
-1. **Introdução ao PLN**
-   - O que é PLN, exemplos do dia a dia, desafios (ambiguidade, negação, variações)
-   - Pipeline geral: texto bruto → tokens → limpeza → vetorização → modelo → predição
-
-2. **Pré‑processamento de texto**
-   - Tokenização com NLTK (`word_tokenize`, `sent_tokenize`)
-   - Normalização (`.lower()`)
-   - Stopwords em português (`nltk.corpus.stopwords`)
-   - Lista customizada de stopwords para **não perder negações** como "não", "mas", "nunca"
-
-3. **Representações clássicas de texto**
-   - **Bag of Words (BoW)** com `CountVectorizer`
-     - Criação de vocabulário, matriz documento × palavra
-     - Interpretação de linhas/colunas e contagens
-   - **TF‑IDF** com `TfidfVectorizer`
-     - Intuição de TF, IDF e TF‑IDF (exemplos numéricos)
-     - Matrizes TF‑IDF e palavras mais importantes por documento
-   - **BoW vs TF‑IDF**
-     - Comparação lado a lado com o mesmo corpus
-     - Quando usar BoW, quando preferir TF‑IDF
-
-4. **Classificação de Sentimentos**
-   - Pipeline completo: texto → TF‑IDF → modelo → predição
-   - **Naive Bayes (MultinomialNB)** como primeiro classificador probabilístico
-   - **Logistic Regression** como classificador linear que retorna probabilidades
-   - Predição em novas reviews, discussão sobre overfitting/dados pequenos
-
-5. **Word Embeddings (introdução prática)**
-   - Intuição: vetores densos que capturam semântica
-   - Demonstração com **Word2Vec (Gensim)**
-   - Palavras similares ("gato" ~ "cachorro", "python" ~ "java")
-   - Diferença para BoW/TF‑IDF e quando vale a pena usar
-
-6. **Conclusão e checklist**
-   - Revisão do pipeline completo
-   - O que você domina depois de passar pelos notebooks
-   - Sugestões de próximos passos (Transformers, BERT/GPT, etc.)
-
----
-
-## 🧪 Tecnologias e Dependências
-
-| Tecnologia | Uso nos notebooks |
+| Tecnologia | Função no Projeto |
 |------------|------------------|
-| **Python** 3.9+ | Linguagem base |
-| **NLTK** | Tokenização, stopwords |
-| **Scikit‑learn** | Modelos (Naive Bayes, Logistic Regression), matrizes (TF-IDF, BoW) e Métricas de avaliação |
-| **Hugging Face** | NLP moderno usando `transformers` e `pipeline` |
-| **Pandas** | Visualização de matrizes BoW/TF‑IDF como `DataFrame` |
-| **NumPy** | Operações numéricas com vetores |
-| **Gensim** | Word2Vec (Word Embeddings) |
+| **Python** 3.9+ | Linguagem core para todos os algoritmos. |
+| **NLTK / SpaCy** | Pre-processamento de léxico, stopwords e VADER. |
+| **Scikit-learn** | Geração de matrizes (`TF-IDF`), Classificadores (`NaiveBayes`/`LogisticRegression`) e Métricas Robustas. |
+| **Hugging Face** | Instanciação de modelos de ponta baseados no ecossistema Transformer. |
+| **Pandas / NumPy**| Manipulação avançada de tensores e Arrays Pandas para visualização de matriz de frequência. |
+| **Streamlit** | UI reativa e hospedagem imediata de protótipos em Python. |
 
-Instalação sugerida:
+### Dependências p/ Uso:
 
 ```bash
-pip install -U nltk scikit-learn pandas numpy gensim transformers torch sentencepiece
-```
+# Instalador Geral de Pipeline Científico:
+pip install -U nltk scikit-learn pandas numpy gensim spacy wordcloud
 
-Recursos do NLTK (baixar uma vez):
-
-```python
-import nltk
-for recurso in ['punkt_tab', 'stopwords', 'wordnet']:
-    nltk.download(recurso)
+# Instalador de Interface Gráfica / NLP Moderno:
+pip install -U streamlit transformers torch sentencepiece
 ```
 
 ---
 
-## 🚀 Como usar (local ou Colab)
+## 🧠 Resultados Principais - O Que a IC Demonstrou
 
-1. Clone o repositório ou envie o notebook para o Google Colab.
-
-2. Abra o notebook principal (`PLN_Machine_Learning.ipynb`).
-
-3. Execute na ordem:
-   - **Partes 1–3:** introdução, setup, tokenização/normalização
-   - **Parte 4:** stopwords e stopwords customizadas
-   - **Partes 5–7:** BoW, TF‑IDF e comparação
-   - **Parte 8:** classificação de sentimentos (Naive Bayes e Logistic)
-   - **Parte 9:** embeddings (opcional, mais avançado)
-
-4. Em cada seção, teste com seus próprios textos (frases positivas/negativas, reviews, etc.).
-
-5. Explore as células de análise (top palavras, pesos do modelo) para entender **por que** o modelo decide como decide.
-
-6. Para fundamentos de IA/ML, abra `IA_Machine_Learning.ipynb` (Partes 1–9).
+1. Percorrimos o **pipeline de maturidade NLP** partindo de *Bag Of Words* a *Deep Learning Pipelines*.
+2. Conseguimos justificar porque a matemática do **TF-IDF supera Bag-of-Words** baseando-se em pesos de penalidade de *stopwords* indiretas.
+3. Treinamos, validamos e metrificamos separadamente (usando F1-Score ao invés de apenas Acurácia) cenários estritos, como **Deteção de Spam**.
+4. Demonstramos as facilidades e os atalhos tecnológicos criados pelos Models da **Hugging Face** para resolução imediata de Análise de Sentimentos.
+5. Emersão final do código puro via Jupyter Notebook para uma GUI tangível e real gerada em **Streamlit**.
 
 ---
 
-## 🧠 O que você aprende com este projeto
+## 👤 Equipe e Autoria
 
-- Sair do **texto bruto** até um **classificador de sentimento funcional**.
-- Entender as **diferenças práticas** entre BoW e TF‑IDF e quando escolher cada um.
-- Criar **listas customizadas de stopwords** para não destruir a informação de negação.
-- Treinar e interpretar **modelos clássicos de ML** em texto (Naive Bayes, Logistic Regression).
-- Ler e extrair **métricas robustas** em cenários reais como Spam vs Ham (Acurácia, Precisão, Recall e F1-Score).
-- Entender os **fundamentos de IA/ML**: tipos de aprendizado, overfitting, sigmoid, gradient descent.
-- Dar os primeiros passos com **Word Embeddings** e similaridade semântica.
-- Contrastar modelos clássicos com abordagens de ponta por meio do uso de **Transformers (Hugging Face pipelines)**.
-- Ler e adaptar **pipelines de PLN** para seus próprios projetos em português.
-
----
-
-## 👤 Autoria
-
-- **Aluno:** Felipe Gomes
 - **Orientação:** Eliane De Bortoli Fávero
+- **Alunos Envolvidos:** Gustavo (Aluno A) e Felipe (Aluno B)
 - **Instituição:** UTFPR — Pato Branco
-- **Tema:** Iniciação Científica em Processamento de Linguagem Natural com Machine Learning
+- **Período de Realização:** 2025
 
-Se este repositório te ajudou, considere deixar uma ⭐ e abrir issues com dúvidas ou sugestões.
-
----
-
-## 📖 Leituras recomendadas
-
-- 📚 *Speech and Language Processing* — Jurafsky & Martin
-- 🎓 Curso de Natural Language Processing (Coursera / edX)
-- 🐍 Documentação:
-  - [NLTK](https://www.nltk.org/)
-  - [Scikit‑learn](https://scikit-learn.org/)
-  - [Gensim](https://radimrehurek.com/gensim/)
-- 🤗 Comunidade: [Hugging Face](https://huggingface.co/) para modelos de linguagem modernos
-
----
-
-**Licença:** MIT — fique à vontade para reutilizar os notebooks, citando a autoria.
+🔥 *Sinta-se livre para clonar o repositório, inspecionar cada modelo, brincar e injetar frases malucas no `IA_Machine_Learning.ipynb` para ver de que lado o Naive Bayes oscila nas previsões de Spam!*
